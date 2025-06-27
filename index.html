@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bolinha Controlável</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #bolinha {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <img id="bolinha" src="img/bolinha.png" alt="Bolinha">
+
+    <script>
+        const bolinha = document.getElementById('bolinha');
+        let x = window.innerWidth / 2;
+        let y = window.innerHeight / 2;
+        const velocidade = 5;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') y -= velocidade;
+            if (e.key === 'ArrowDown') y += velocidade;
+            if (e.key === 'ArrowLeft') x -= velocidade;
+            if (e.key === 'ArrowRight') x += velocidade;
+
+            // Limita dentro da tela
+            x = Math.max(25, Math.min(x, window.innerWidth - 25));
+            y = Math.max(25, Math.min(y, window.innerHeight - 25));
+
+            bolinha.style.left = x + 'px';
+            bolinha.style.top = y + 'px';
+        });
+    </script>
+</body>
+</html>
